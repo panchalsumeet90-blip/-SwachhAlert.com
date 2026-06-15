@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="display:none;">
 
   <!-- HEADER -->
   <header class="site-header">
@@ -109,6 +109,16 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+const password = prompt("SwachhAlert2026");
+
+if (password === "SwachhAlert2026") {
+    document.body.style.display = "block";
+} else {
+    alert("Access Denied!");
+    window.location.href = "index.html";
+}
+</script>
 
 </body>
 </html>
