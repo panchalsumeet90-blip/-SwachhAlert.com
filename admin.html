@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwachhAlert Admin Panel</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">♻</span>
+        <span class="logo-text">Swachh<strong>Alert</strong></span>
+      </div>
+
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Report</a>
+        <a href="admin.html" class="nav-link active admin-link">Admin Panel</a>
+        <button id="themeToggle" class="nav-link dark-mode">
+     🌙
+     </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ADMIN HERO -->
+  <section class="admin-hero">
+    <div class="admin-hero-inner">
+
+      <div>
+        <h1>Complaint <span>Dashboard</span></h1>
+        <p>Manage and monitor all garbage complaints submitted by citizens.</p>
+      </div>
+
+      <div class="admin-stats">
+        <div class="astat">
+          <span class="astat-num" id="adminTotal">0</span>
+          <span class="astat-label">Total</span>
+        </div>
+
+        <div class="astat">
+          <span class="astat-num" id="adminPending">0</span>
+          <span class="astat-label">Pending</span>
+        </div>
+
+        <div class="astat">
+          <span class="astat-num" id="adminReview">0</span>
+          <span class="astat-label">Reviewing</span>
+        </div>
+
+        <div class="astat">
+          <span class="astat-num" id="adminResolved">0</span>
+          <span class="astat-label">Resolved</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOOLBAR -->
+  <section class="admin-toolbar">
+
+    <input
+      type="text"
+      id="adminSearch"
+      class="search-box"
+      placeholder="Search by name, location, category, ID..."
+    >
+
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Pending">Pending</button>
+      <button class="filter-btn" data-filter="Reviewing">Reviewing</button>
+      <button class="filter-btn" data-filter="Resolved">Resolved</button>
+    </div>
+
+    <div class="filter-row">
+      <button class="filter-btn" id="refreshBtn">↻ Refresh</button>
+      <button class="clear-btn" id="clearAllBtn">Clear All</button>
+    </div>
+
+  </section>
+
+  <!-- COMPLAINTS -->
+  <section class="complaints-section">
+    <div id="complaintsGrid" class="complaints-grid">
+
+      <div class="empty-state">
+        <span class="empty-icon">🗑️</span>
+        <p>No complaints available yet.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>SwachhAlert · Municipal Grievance Portal · Admin Dashboard</p>
+    <p class="footer-note">
+      Complaint data is loaded from localStorage.
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+
+</body>
+</html>

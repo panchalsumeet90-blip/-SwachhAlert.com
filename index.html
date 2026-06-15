@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwachhAlert — Report Garbage</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ── HEADER ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">♻</span>
+        <span class="logo-text">Swachh<strong>Alert</strong></span>
+      </div>
+     <nav class="header-nav">
+     <a href="index.html" class="nav-link active">Report</a>
+     <a href="track.html" class="nav-link">Track Complaint</a>
+    
+     <button id="themeToggle" class="nav-link dark-mode">
+     🌙
+     </button>
+
+     <a href="admin.html" class="nav-link admin-link">Admin Panel →</a>
+     </nav>
+     </div>
+      </header>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-content">
+      <div class="badge">Municipal Grievance Portal</div>
+      <h1 class="hero-title">Report <em>Garbage</em><br/>in Your Area</h1>
+      <p class="hero-sub">Upload a photo, pin your location, and send a complaint directly to your municipal corporation in seconds.</p>
+      <a href="#report-form" class="cta-btn">File a Complaint ↓</a>
+    </div>
+    <div class="hero-visual">
+      <div class="stat-card">
+        <span class="stat-num" id="stat-count">0</span>
+        <span class="stat-label">Complaints Filed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon">📸</div>
+        <h3>1. Upload Photo</h3>
+        <p>Take or choose a photo of the garbage / waste problem in your area.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">📍</div>
+        <h3>2. Add Location</h3>
+        <p>Type your address or use the auto-detect feature to pin your exact spot.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">📝</div>
+        <h3>3. Describe Issue</h3>
+        <p>Give a short description so municipal staff know what to expect.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">✅</div>
+        <h3>4. Submit</h3>
+        <p>Your complaint is logged instantly and visible to the admin dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── REPORT FORM ── -->
+  <section class="form-section" id="report-form">
+    <div class="form-wrapper">
+      <div class="form-header">
+        <h2>File Your Complaint</h2>
+        <p>All fields are required. Your complaint will be tracked with a unique ID.</p>
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="imageInput" accept="image/*" hidden />
+        <div class="upload-placeholder" id="uploadPlaceholder">
+          <div class="upload-icon">🗑️</div>
+          <p class="upload-text">Drag &amp; drop image here<br/><span>or click to browse</span></p>
+        </div>
+        <img id="imagePreview" class="image-preview hidden" alt="Preview" />
+        <button class="remove-img hidden" id="removeImg" type="button">✕ Remove</button>
+      </div>
+
+      <!-- Form Fields -->
+      <div class="field-grid">
+        <div class="field-group full">
+          <label for="fullName">Your Full Name</label>
+          <input type="text" id="fullName" placeholder="e.g. Ramesh Patil" />
+        </div>
+        <div class="field-group full">
+          <label for="phone">Mobile Number</label>
+          <input type="tel" id="phone" placeholder="e.g. 9876543210" maxlength="10" />
+        </div>
+        <div class="field-group full location-field">
+          <label for="location">Location / Address</label>
+          <div class="location-row">
+            <input type="text" id="location" placeholder="e.g. Near Central Market, Dharampeth, Nagpur" />
+            <button type="button" class="geo-btn" id="geoBtn" title="Auto-detect location">
+              <span id="geoBtnIcon">📍</span>
+            </button>
+          </div>
+        </div>
+        <div class="field-group full">
+          <label for="ward">Ward / Zone (optional)</label>
+          <input type="text" id="ward" placeholder="e.g. Ward No. 12, East Zone" />
+        </div>
+        <div class="field-group full">
+          <label for="category">Issue Category</label>
+          <select id="category">
+            <option value="">-- Select Category --</option>
+            <option value="Overflowing Dustbin">Overflowing Dustbin</option>
+            <option value="Illegal Dumping">Illegal Dumping</option>
+            <option value="Garbage Not Collected">Garbage Not Collected</option>
+            <option value="Road / Street Littering">Road / Street Littering</option>
+            <option value="Construction Waste">Construction Waste</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="field-group full">
+          <label for="description">Description</label>
+          <textarea id="description" rows="4" placeholder="Briefly describe the issue — type of garbage, how long it has been there, any hazard, etc."></textarea>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="button" class="submit-btn" id="submitBtn">
+          <span id="submitLabel">Submit Complaint</span>
+          <span id="submitSpinner" class="spinner hidden"></span>
+        </button>
+      </div>
+
+      <!-- Success Toast -->
+      <div class="toast hidden" id="toast">
+        <span class="toast-icon">🎉</span>
+        <div>
+          <strong>Complaint Submitted!</strong>
+          <p id="toastId"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <p>SwachhAlert · Municipal Grievance Portal: Chattrapati Sambhajinagar, Maharashtra</p>
+    <p class="footer-note">Data is stored locally in this session. For production, connect to a backend API.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Complaint - SwachhAlert</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">♻</span>
+        <span class="logo-text">Swachh<strong>Alert</strong></span>
+      </div>
+
+      <nav class="header-nav">
+        <a href="index.html" class="nav-link">Report</a>
+        <a href="track.html" class="nav-link active">Track Complaint</a>
+        <a href="admin.html" class="nav-link admin-link">Admin Panel →</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- TRACK SECTION -->
+  <section class="form-section">
+    <div class="form-wrapper">
+
+      <div class="form-header">
+        <h2>Track Your Complaint</h2>
+        <p>Enter your Complaint ID to check the latest status.</p>
+      </div>
+
+      <div class="field-group">
+        <label>Complaint ID</label>
+        <input
+          type="text"
+          id="trackId"
+          placeholder="Example: SWA-ABC123"
+        >
+      </div>
+
+      <div class="form-footer">
+        <button class="submit-btn" id="trackBtn">
+          Check Status
+        </button>
+      </div>
+
+      <div id="resultBox" class="toast hidden" style="margin-top:20px;">
+        <div>
+          <strong id="statusTitle"></strong>
+          <p id="statusDetails"></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>SwachhAlert · Complaint Tracking System</p>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = "swachhalert_complaints";
+
+    document.getElementById("trackBtn").addEventListener("click", () => {
+
+      const complaintId = document
+        .getElementById("trackId")
+        .value
+        .trim()
+        .toUpperCase();
+
+      const resultBox = document.getElementById("resultBox");
+      const title = document.getElementById("statusTitle");
+      const details = document.getElementById("statusDetails");
+
+      const complaints =
+        JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+      const complaint = complaints.find(
+        c => c.id.toUpperCase() === complaintId
+      );
+
+      resultBox.classList.remove("hidden");
+
+      if (!complaint) {
+        title.textContent = "❌ Complaint Not Found";
+        details.textContent =
+          "Please check your Complaint ID and try again.";
+        return;
+      }
+
+      title.textContent = `✅ Status: ${complaint.status}`;
+
+      details.innerHTML = `
+        <strong>ID:</strong> ${complaint.id}<br>
+        <strong>Name:</strong> ${complaint.name}<br>
+        <strong>Category:</strong> ${complaint.category}<br>
+        <strong>Location:</strong> ${complaint.location}<br>
+        <strong>Date:</strong> ${new Date(
+          complaint.timestamp
+        ).toLocaleString()}
+      `;
+    });
+  </script>
+
+</body>
+</html>
