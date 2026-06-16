@@ -726,3 +726,37 @@ body.dark-mode .form-header h2,
 body.dark-mode label {
   color: white;
 }
+/* Existing CSS */
+
+/* Existing CSS */
+
+/* Existing CSS */
+
+
+/* =========================
+   3D EFFECTS
+========================= */
+
+.step-card,
+.form-wrapper,
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.step-card:hover,
+.form-wrapper:hover,
+.stat-card:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.hero-visual {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
